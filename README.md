@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+Steps for to run a application:
+
+1.After you pull the code from github, do npm install
+2.Do npm start,this command will run the application
+3.Login data was stored in json-server,please do json-server --watch login.json command at the root of the application.
+3.Without you run json server login page will not work.
