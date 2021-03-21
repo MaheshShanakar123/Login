@@ -3,12 +3,38 @@
     {
       "id": 1,
       "username": "mahesh@gmail.com",
-      "password": "cddcddc"
+      "password": "cddcddc",
+      "name": "Mahesh",
+      "Phone": "8951809045",
+      "Gender": "Male",
+      "Balance": 22000
     },
     {
       "id": 2,
       "username": "hruday@gmail.com",
-      "password": "hruday123"
+      "password": "hruday123",
+      "name": "Hruday",
+      "Phone": "8678424901",
+      "Gender": "Male",
+      "Balance": 146000
+    },
+    {
+      "id": 3,
+      "username": "abc@gmail.com",
+      "password": "abc123",
+      "name": "abc",
+      "Phone": "8678424901",
+      "Gender": "Female",
+      "Balance": 12700
+    },
+    {
+      "id": 4,
+      "username": "xyz@gmail.com",
+      "password": "xyz123",
+      "name": "xyz",
+      "Phone": "8678424901",
+      "Gender": "Female",
+      "Balance": 16000
     }
   ]
 }

@@ -1,64 +1,47 @@
-import { Fetch_Employee, Fetch_Employee_Success } from "./dasboardType";
+import { Fetch_Users, Fetch_Users_Success } from "./dasboardType";
 
-export const fetchemployeerequest = () => {
+export const fetchusersrequest = () => {
     return {
-        type: Fetch_Employee,
+        type: Fetch_Users,
     }
 }
 
-export const employeeUsers = () => {
+
+export const fetchAllUsers = (data) => {
+    console.log(data);
     return {
-        type: Fetch_Employee_Success,
-        payload: {
-            user: [{
-                "id": 1,
-                "name": "test1",
-                "age": "11",
-                "gender": "male",
-                "email": "test1@gmail.com",
-                "phoneNo": "9415346313"
-            },
-            {
-                "id": 2,
-                "name": "test2",
-                "age": "12",
-                "gender": "male",
-                "email": "test2@gmail.com",
-                "phoneNo": "9415346314"
-            },
-            {
-                "id": 3,
-                "name": "test3",
-                "age": "13",
-                "gender": "male",
-                "email": "test3@gmail.com",
-                "phoneNo": "9415346315"
-            },
-            {
-                "id": 4,
-                "name": "test4",
-                "age": "14",
-                "gender": "male",
-                "email": "test4@gmail.com",
-                "phoneNo": "9415346316"
-            },
-            {
-                "id": 5,
-                "name": "test5",
-                "age": "15",
-                "gender": "male",
-                "email": "test5@gmail.com",
-                "phoneNo": "9415346317"
-            },
-            {
-                "id": 6,
-                "name": "test6",
-                "age": "16",
-                "gender": "male",
-                "email": "test6@gmail.com",
-                "phoneNo": "9415346318"
-            }
-            ]
-        }
+        type: Fetch_Users_Success,
+        payload: data
     }
 }
+
+export function fetchPostsError() {
+    return {
+      type: "FETCH_ERROR"
+    }
+  }
+
+const getAlltheDataFromUser = () => {
+    var users = [];
+    return (dispatch) => {
+        dispatch(fetchusersrequest());
+        return fetchPosts().then(([response, json]) =>{
+            if(response.status === 200){
+                console.log(json)
+                dispatch(fetchAllUsers(json))
+          }
+        //   else{
+        //     dispatch(fetchPostsError())
+        //   }
+        })
+            // dispatch(fetchAllUsers(users))
+    }
+}
+
+function fetchPosts() {
+    const URL = "http://localhost:3000/login";
+    return fetch(URL, { method: 'GET'})
+       .then( response => Promise.all([response, response.json()]));
+  }
+
+export default getAlltheDataFromUser

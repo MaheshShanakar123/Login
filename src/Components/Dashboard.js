@@ -1,40 +1,57 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { employeeUsers } from '../Redux/Dashboard/dashboardAction';
-import Navbar from './Navbar';
+import getAlltheDataFromUser from '../Redux/Dashboard/dashboardAction';
+import Sidebar from './Sidebar';
 
 function Dashboard() {
+
+    const loginuser = useSelector(state => state.loginReducer);
+    console.log(loginuser);
+
     const dispatch = useDispatch();
-    dispatch(employeeUsers())
-    const loginuser = useSelector(state => state);
+    dispatch(getAlltheDataFromUser());
     
     return (
         <div>
-            <Navbar />
-            <table className="table table-striped">
+            <Sidebar />
+
+            {/* <table className="table table-striped">
                 <thead>
                     <tr>
-                        <th>Sl.No</th>
+                        <th>User ID</th>
                         <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
+                        <th>Phone</th>
                         <th>E-mail</th>
-                        <th>Phone Number</th>
+                        <th>Balance</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {loginuser.dashboardReducer.user.user.map(employees => (
-                        <tr key={employees.id}>
-                            <td>{employees.id}</td>
-                            <td>{employees.name}</td>
-                            <td>{employees.age}</td>
-                            <td>{employees.gender}</td>
-                            <td>{employees.email}</td>
-                            <td>{employees.phoneNo}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                {/* <tbody>
+                    {loginuser.dashboardReducer.user.map(employees => {
+                        console.log(employees);
+                    }
+                    //     <div>
+                    // {employees[0].map(user => 
+                    // (
+                    //     <tr key={user.id}>
+                    //          <td>{user.id}</td>
+                    //          <td>{user.name}</td>
+                    //          <td>{user.Phone}</td>
+                    //          <td>{user.username}</td>
+                    //          <td>{user.Balance}</td>
+                    //      </tr>
+                    // ))
+                    // }
+                    //     </div>
+                        // <tr key={employees.id}>
+                        //     <td>{employees.id}</td>
+                        //     <td>{employees.name}</td>
+                        //     <td>{employees.Phone}</td>
+                        //     <td>{employees.username}</td>
+                        //     <td>{employees.Balance}</td>
+                        // </tr>
+                    )}
+                </tbody> */}
+            {/* </table> */} 
         </div>
     )
 }

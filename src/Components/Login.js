@@ -68,7 +68,7 @@ function Login() {
                                     <div>{formdata.password.length == 0 && error ? <div className="alerttext">Please enter a Password</div> : null}</div>
                                 </div>
                                 <div className="group">
-                                    <button className="btn btn-primary button" id="login">{loading ?
+                                    <button className="btn btn-primary button" id="login" disabled={!formdata.username || !formdata.password}>{loading ?
                                         <i className="fa fa-spinner fa-spin" style={{ fontSize: 24 }}></i>
                                         : null}
                                   Login</button>

@@ -1,20 +1,20 @@
-import { Fetch_Employee, Fetch_Employee_Success } from "./dasboardType";
+import { Fetch_Users, Fetch_Users_Success } from "./dasboardType";
 
 const initialState = {
     loading: false,
-    empoyee: [],
+    user: [],
     error: ''
 }
 
 const dashboardReducer = (state = initialState, action) => {
     switch (action.type) {
-        case Fetch_Employee:
+        case Fetch_Users:
             return {
                 ...state,
                 loading: true,
                 error: null
             };
-        case Fetch_Employee_Success:
+        case Fetch_Users_Success:
             return {
                 loading: true,
                 user: action.payload,

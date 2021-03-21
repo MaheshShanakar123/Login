@@ -1,0 +1,53 @@
+.heading{
+    text-align: center;
+    background-color:blue;
+    padding:10px;
+    color:white;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+form{
+    text-align: left;
+    margin-top: 30px;
+}
+
+.modal-content{
+    padding-top:30px;
+    margin-top:50%;
+}
+button{
+    margin-left:10px;
+}
+
+.text {
+    position: relative;
+    left:26%;
+}
+
+.completeData{
+    margin-top:40px;
+}
+.getButton{
+    margin-top:20px;
+}
+.none{
+    display:none;
+}
+
+.serverData{
+    left: 58%;
+    position: relative;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .heading{  
+     margin-left: -30px;
+    }
+    h3 {
+        position: relative;
+        right: 26%;
+        margin-top: 108px;
+    }
+    }
