@@ -30,7 +30,7 @@ function Check_Balance() {
             setTimeout(() => {
                 setLoading(false);
                 setamount(true);
-            }, 1000)
+            }, 5000)
         } else {
             console.log('failure');
         }

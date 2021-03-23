@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import '../css/Wallet.css';
+import All_Transactions from './All_Transactions';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Switch
+} from 'react-router-dom';
 
 function Spend_Funds() {
+    const [transcationLists,settranscationLists]= useState([
+        // { user: 'Mahesh', to: 'Hruday' , amount:500 }
+    ])
     const userData = useSelector(state => state);
     var toDropdown = userData.dashboardReducer.user.filter((data) => {
         return data.name != userData.loginReducer.user.name
@@ -17,13 +27,13 @@ function Spend_Funds() {
         from: userData.loginReducer.user.id,
         to: '',
         amount: 0
-    }) 
-   console.log(transferamount);
+    })
+    console.log(transferamount);
 
-   var finduser = toDropdown.find((data) => {
-    return data.id === parseInt(transferamount.to);
-})
-console.log(finduser);
+    var finduser = toDropdown.find((data) => {
+        return data.id === parseInt(transferamount.to);
+    })
+    console.log(finduser);
 
     const [updatedata, setupdatedata] = useState({
         id: '',
@@ -57,9 +67,22 @@ console.log(finduser);
         fetch('http://localhost:3000/login/' + finduser.id, requestOptions)
             .then(response => response.json())
             .then(json => console.log(json))
+            console.log(typeof transcationLists)
+            // transcationLists.push({
+            //     user: userData.loginReducer.user.name,
+            //     to:  finduser.name
+            // })
+            settranscationLists([...transcationLists,{
+                user: userData.loginReducer.user.name,
+                to:  finduser.name,
+                amount: transferamount.amount
+            }])
     }
+    console.log(transcationLists);
     return (
         <div className="col-md-9">
+            {/* <Route path="/alltranscations" render={() => <All_Transactions transcations='hi' />} />  */}
+            {/* <All_Transactions transcations={transcationLists} /> */}
             <div className="heading">Send_Funds</div>
             <form onSubmit={handleSubmit}>
                 <div className="row form-group">
@@ -69,7 +92,7 @@ console.log(finduser);
 
                 <div className="row form-group">
                     <label htmlFor="users" className="col-md-4">To:</label>
-                    <select className="col-md-6 form-control" id="users" name="userList" onChange={(e) => settransferamount({ ...transferamount, to: e.target.value, id:3})}>
+                    <select className="col-md-6 form-control" id="users" name="userList" onChange={(e) => settransferamount({ ...transferamount, to: e.target.value, id: 3 })}>
                         {toDropdown.map(user => (
                             <option value={user.id}>{user.name}</option>
                         ))}
@@ -78,12 +101,20 @@ console.log(finduser);
 
                 <div className="row form-group">
                     <label htmlFor="amount" className="col-md-4">Amount:</label>
-                    <input type="text" className="col-md-6 form-control" name="amount" onChange={(e) => settransferamount({ ...transferamount, amount: e.target.value })} />
+                    <input type="text" className="col-md-6 form-control" name="amount" onChange={(e) => settransferamount({ ...transferamount, amount: e.target.value })} autoComplete="off" />
                 </div>
 
                 <div className="row">
-                    <button type="submit" class="btn btn-primary offset-md-10 col-md-2">Submit</button>
+                    <button type="submit" class="btn btn-primary offset-md-7 col-md-2">Submit</button>
+                    <Link className="col-md-3" to={{
+                    pathname: "/alltranscations",
+                    state: {
+                        infoId: transcationLists,
+                    }, // your data array of objects
+                }}
+            ><button type="submit" class="btn btn-danger">Go To All Transactions >>></button></Link>
                 </div>
+                
             </form>
         </div>
     )

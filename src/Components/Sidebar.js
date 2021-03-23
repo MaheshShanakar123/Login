@@ -31,9 +31,9 @@ function Sidebar() {
             <Link to="/allwallets"><li>All Wallets</li></Link>
             <Link to='/newwallet'><li>New Wallet</li></Link>
             <Link to='/balance'><li>Check Balance</li></Link>
-            <Link to='/addfunds'><li>Add Funds</li></Link>
+            <Link to='/addfunds'><li>Add to Wallet</li></Link>
             <Link to='/spend_funds'><li>Spend Funds</li></Link>
-            <Link to='/alltranscations'><li>All Transactions</li></Link>
+            {/* <Link to='/alltranscations'><li>All Transactions</li></Link> */}
             </ul>
             <Switch>
 
