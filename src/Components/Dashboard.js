@@ -1,57 +1,30 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import getAlltheDataFromUser from '../Redux/Dashboard/dashboardAction';
+import FooterFile from './FooterFile';
+import Navbar from './Navbar';
 import Sidebar from './Sidebar';
+import { useLocation } from 'react-router-dom';
 
 function Dashboard() {
 
     const loginuser = useSelector(state => state.loginReducer);
     console.log(loginuser);
+    console.log(Object.keys(loginuser.user).length === 0 && loginuser.user.constructor === Object)
+    const currentURL = window.location.pathname;
+    console.log(currentURL);
 
     const dispatch = useDispatch();
     dispatch(getAlltheDataFromUser());
     
     return (
         <div>
+            {currentURL === '/dashboard' || !currentURL === '/login' || currentURL === '/balance' || currentURL === '/newwallet' || currentURL === '/addfunds' || currentURL === '/spend_funds'  ? <div><Navbar />
+            <Sidebar /><FooterFile /></div>:''}
+            {Object.keys(loginuser.user).length > 0 && loginuser.user.constructor === Object ? <div><Navbar />
             <Sidebar />
-
-            {/* <table className="table table-striped">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Phone</th>
-                        <th>E-mail</th>
-                        <th>Balance</th>
-                    </tr>
-                </thead>
-                {/* <tbody>
-                    {loginuser.dashboardReducer.user.map(employees => {
-                        console.log(employees);
-                    }
-                    //     <div>
-                    // {employees[0].map(user => 
-                    // (
-                    //     <tr key={user.id}>
-                    //          <td>{user.id}</td>
-                    //          <td>{user.name}</td>
-                    //          <td>{user.Phone}</td>
-                    //          <td>{user.username}</td>
-                    //          <td>{user.Balance}</td>
-                    //      </tr>
-                    // ))
-                    // }
-                    //     </div>
-                        // <tr key={employees.id}>
-                        //     <td>{employees.id}</td>
-                        //     <td>{employees.name}</td>
-                        //     <td>{employees.Phone}</td>
-                        //     <td>{employees.username}</td>
-                        //     <td>{employees.Balance}</td>
-                        // </tr>
-                    )}
-                </tbody> */}
-            {/* </table> */} 
+            <FooterFile />
+            </div>: '' }
         </div>
     )
 }

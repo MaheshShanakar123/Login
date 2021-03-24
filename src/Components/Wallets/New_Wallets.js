@@ -36,13 +36,13 @@ function New_Wallets() {
 
     if (state.loading === true) {
         var success = <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-            <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
-            <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " /></svg>
+            <circle className="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
+            <polyline className="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " /></svg>
 
         setTimeout(() => {
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-                <circle class="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
-                <polyline class="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " /></svg>
+                <circle className="path circle" fill="none" stroke="#73AF55" stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1" r="62.1" />
+                <polyline className="path check" fill="none" stroke="#73AF55" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10" points="100.2,40.2 51.5,88.8 29.8,67.5 " /></svg>
         }, 1000)
     }
     var handleSubmit = (e) => {
@@ -100,7 +100,7 @@ function New_Wallets() {
                     <input type="text" className="col-md-6 form-control" name="amount" onChange={(e) => setformdata({ ...formdata, Balance: parseInt(e.target.value) })} placeholder="Enter a Amount" />
                 </div>
                 <div className="row">
-                    <button type="submit" class="btn btn-primary offset-md-10 col-md-2" data-toggle="modal" data-target="#myModal" disabled={!formdata.password ||
+                    <button type="submit" className="btn btn-primary offset-md-10 col-md-2" data-toggle="modal" data-target="#myModal" disabled={!formdata.password ||
                         !formdata.name ||
                         !formdata.username ||
                         !formdata.Phone ||
@@ -109,21 +109,17 @@ function New_Wallets() {
                 </div>
             </form>
 
-            <div class="modal" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
+            <div className="modal" id="myModal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
                         <div className="row form-group">
-                            <div class="row">
+                            <div className="row">
                                 <div className="col-md-4">
                                     {success}
                                 </div>
                             </div>
-                            {/* <h6>{loading ? <div className="serverData">Getting Response from the Server</div> : ''}</h6>
-                            {amount ? <h3 className="col-md-4 balance">Rs.{userData.user.Balance}</h3> :
-                                <input type="password" className="col-md-6 form-control text" name="password" placeholder="Password" value={password} onChange={(e) => setpassword(e.target.value)} />
-                            } */}
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                             <h4>New Account Added Successfully</h4>
                             <div className="row">
                                 <button type="button" class="btn btn-danger col-md-2" data-dismiss="modal">Close</button>

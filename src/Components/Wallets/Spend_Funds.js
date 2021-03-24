@@ -11,9 +11,7 @@ import {
 } from 'react-router-dom';
 
 function Spend_Funds() {
-    const [transcationLists,settranscationLists]= useState([
-        // { user: 'Mahesh', to: 'Hruday' , amount:500 }
-    ])
+    const [transcationLists, settranscationLists] = useState([])
     const userData = useSelector(state => state);
     var toDropdown = userData.dashboardReducer.user.filter((data) => {
         return data.name != userData.loginReducer.user.name
@@ -67,23 +65,18 @@ function Spend_Funds() {
         fetch('http://localhost:3000/login/' + finduser.id, requestOptions)
             .then(response => response.json())
             .then(json => console.log(json))
-            console.log(typeof transcationLists)
-            // transcationLists.push({
-            //     user: userData.loginReducer.user.name,
-            //     to:  finduser.name
-            // })
-            settranscationLists([...transcationLists,{
-                user: userData.loginReducer.user.name,
-                to:  finduser.name,
-                amount: transferamount.amount
-            }])
+        console.log(typeof transcationLists)
+
+        settranscationLists([...transcationLists, {
+            user: userData.loginReducer.user.name,
+            to: finduser.name,
+            amount: transferamount.amount
+        }])
     }
     console.log(transcationLists);
     return (
         <div className="col-md-9">
-            {/* <Route path="/alltranscations" render={() => <All_Transactions transcations='hi' />} />  */}
-            {/* <All_Transactions transcations={transcationLists} /> */}
-            <div className="heading">Send_Funds</div>
+            <div className="heading">Send Amount</div>
             <form onSubmit={handleSubmit}>
                 <div className="row form-group">
                     <label htmlFor="name" className="col-md-4">From:</label>
@@ -105,16 +98,16 @@ function Spend_Funds() {
                 </div>
 
                 <div className="row">
-                    <button type="submit" class="btn btn-primary offset-md-7 col-md-2">Submit</button>
+                    <button type="submit" class="btn btn-primary offset-md-7 col-md-2" disabled={!transferamount.from || !transferamount.to || !transferamount.amount}>Submit</button>
                     <Link className="col-md-3" to={{
-                    pathname: "/alltranscations",
-                    state: {
-                        infoId: transcationLists,
-                    }, // your data array of objects
-                }}
-            ><button type="submit" class="btn btn-danger">Go To All Transactions >>></button></Link>
+                        pathname: "/alltranscations",
+                        state: {
+                            infoId: transcationLists,
+                        },
+                    }}
+                    ><button type="submit" class="btn btn-danger">Go To All Transactions >>></button></Link>
                 </div>
-                
+
             </form>
         </div>
     )

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import loginAutheticatedPerson from '../Redux/Login/loginAction';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
@@ -14,30 +14,31 @@ function Login() {
         password: '',
     })
     const [loading, setLoading] = useState(false);
-    
+
     const dispatch = useDispatch();
 
     const loginuser = useSelector(state => state.loginReducer);
-
-    const updateuser = ()=>{
+    console.log(loginuser.user);
+    console.log(Object.keys(loginuser.user).length === 0 && loginuser.user.constructor === Object);
+    const updateuser = () => {
         data = loginuser;
-       
+
         if (Object.keys(data.user).length === 0 && data.user.constructor === Object) {
             history.push("/login");
-        }else if(Object.keys(data.user).length > 0 && data.user.constructor === Object){
+        } else if (Object.keys(data.user).length > 0 && data.user.constructor === Object) {
             history.push("/dashboard");
         }
 
     }
     useEffect(() => {
-       updateuser()
+        updateuser()
     }, [loginuser])
 
     const handleSubmit = async (e) => {
         setError(true);
         e.preventDefault();
         if (formdata.username !== '' && formdata.password !== '') {
-            dispatch(loginAutheticatedPerson(formdata));            
+            dispatch(loginAutheticatedPerson(formdata));
         }
         setLoading(true);
         setTimeout(() => {
@@ -68,7 +69,7 @@ function Login() {
                                     <div>{formdata.password.length == 0 && error ? <div className="alerttext">Please enter a Password</div> : null}</div>
                                 </div>
                                 <div className="group">
-                                    <button className="btn btn-primary button" id="login" disabled={!formdata.username || !formdata.password}>{loading ?
+                                    <button className="btn btn-primary button" id="login">{loading ?
                                         <i className="fa fa-spinner fa-spin" style={{ fontSize: 24 }}></i>
                                         : null}
                                   Login</button>

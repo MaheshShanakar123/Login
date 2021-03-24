@@ -1,30 +1,38 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import logout from '../Redux/Login/loginAction';
+import './css/footer.css';
 
 function Navbar() {
     const loginuser = useSelector(state => state.loginReducer);
+    const dispatch = useDispatch();
+    console.log(loginuser);
+
+    const logOut = () => {
+        // dispatch(logout());
+    }
     return (
         <div>
-            <nav className="navbar navbar-expand-md navbar-light bg-light">
-                <a href="#" className="navbar-brand">Brand</a>
+            <nav className="navbar navbar-expand-md">
+                <div className="navbar-brand">Wallet</div>
                 <button type="button" className="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                <div className="collapse navbar-collapse" id="navbarCollapse">
-                    <div className="navbar-nav">
-                        <a href="#" className="nav-item nav-link active">Home</a>
-                        <a href="#" className="nav-item nav-link">Profile</a>
-                        <a href="#" className="nav-item nav-link">Messages</a>
-                        <a href="#" className="nav-item nav-link disabled" tabindex="-1">Reports</a>
-                    </div>
-                    <div className="navbar-nav ml-auto">
-                        <a className="nav-item nav-link">{loginuser.user !== undefined ? <div>{loginuser.user.username}</div> : <div>Login</div>}</a>
+                <div class="nav-item dropdown ml-auto">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" style={{ color: 'black' }}>
+                        {loginuser.user.name}
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" onClick={logOut}>Logout</a>
                     </div>
                 </div>
+                <a className="nav-item nav-link"></a>
             </nav>
+
+
         </div>
     )
 }
 
-export default Navbar
+export default React.memo(Navbar)

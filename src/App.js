@@ -13,35 +13,22 @@ import {
   Switch
 } from 'react-router-dom';
 import { Alert } from 'bootstrap-4-react';
-import Navbar from './Components/Navbar';
 import { Suspense, lazy } from 'react';
-import Check_Balance from './Components/Wallets/Check_Balance';
-import { useSelector } from 'react-redux';
+import Add_Funds from './Components/Wallets/Add_Funds';
 
 // const Nav_Bar = React.lazy(() => import('./Components/Wallets/Check_Balance'));
 function App() {
   return (
     <div className="App">
       <Provider store={store}>
+        <Dashboard />
       {/* <Suspense fallback={<div>Loading...</div>}> */}
-      <Navbar />
       {/* </Suspense> */}
       <Router>
-      {/* <ul className="App-header"> 
-              <li> 
-                <Link to="/">Home</Link> 
-              </li> 
-              <li> 
-                <Link to="/allwallets">About Us</Link> 
-              </li> 
-              <li> 
-                <Link to="/contact">Contact Us</Link> 
-              </li> 
-            </ul>  */}
           <Switch>
             <Route exact path='/' component={Login}></Route>
             <Route exact path='/login' component={Login}></Route>
-            <Route exact path='/dashboard' component={Dashboard}></Route>
+            <Route exact path='/addfunds' component={Add_Funds}></Route>
           </Switch>
         </Router>
      </Provider>

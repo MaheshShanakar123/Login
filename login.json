@@ -7,6 +7,7 @@
       "name": "Mahesh",
       "Phone": "8951809045",
       "Gender": "Male",
+      "role": "admin",
       "Balance": 22000
     },
     {
@@ -16,6 +17,7 @@
       "name": "Hruday",
       "Phone": "8678424901",
       "Gender": "Male",
+      "role": "user",
       "Balance": 150000
     },
     {
@@ -25,6 +27,7 @@
       "name": "abc",
       "Phone": "9304820948",
       "Gender": "Male",
+      "role": "user",
       "Balance": 500
     },
     {
@@ -34,7 +37,7 @@
       "name": "xyz",
       "Phone": "8678424901",
       "Gender": "Female",
-      "Balance": 27000
+      "Balance": 27500
     },
     {
       "id": 5,
@@ -43,7 +46,7 @@
       "name": "Category1",
       "Phone": "1234567890",
       "Gender": "Female",
-      "Balance": 6200
+      "Balance": 6700
     },
     {
       "id": 6,
@@ -52,6 +55,7 @@
       "name": "frewfc",
       "Phone": "4544",
       "Gender": "Other",
+      "role": "user",
       "Balance": 10500
     },
     {
@@ -59,8 +63,9 @@
       "username": "ytfv@gvgv",
       "password": "cwdcwd",
       "name": "MaheshShankar",
-      "Phone": "cdwsc",
+      "Phone": "547678",
       "Gender": "Female",
+      "role": "user",
       "Balance": 4000
     },
     {
@@ -69,6 +74,7 @@
       "password": "qwerty",
       "Phone": "1234574689",
       "Gender": "Male",
+      "role": "user",
       "Balance": 500,
       "id": 8
     }
