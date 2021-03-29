@@ -4,7 +4,8 @@ import {
     BrowserRouter as Router,
     Route,
     Link,
-    Switch
+    Switch,
+    Redirect
 } from 'react-router-dom';
 import Add_Funds from './Wallets/Add_Funds';
 import All_Transactions from './Wallets/All_Transactions';
@@ -15,10 +16,41 @@ import Spend_Funds from './Wallets/Spend_Funds';
 import $ from "jquery";
 import { useSelector } from 'react-redux';
 import Navbar from './Navbar';
+import { Suspense, lazy } from 'react';
+import NotFound from './NotFound';
+import Dashboard from './Dashboard';
+import Routes from './Routes';
+import Login from './Login';
 
-function Sidebar() {
+// const Add_Funds = React.lazy(() => import('./Wallets/Add_Funds'));
+// const All_Transactions = React.lazy(() => import('./Wallets/Add_Funds'));
+// const All_Wallets = React.lazy(() => import('./Wallets/Add_Funds'));
+// const Check_Balance = React.lazy(() => import('./Wallets/Add_Funds'));
+// const New_Wallets = React.lazy(() => import('./Wallets/Add_Funds'));
+// const Spend_Funds = React.lazy(() => import('./Wallets/Add_Funds'));
+
+function Sidebar(props) {
     const loginuser = useSelector(state => state.loginReducer);
-    console.log(loginuser)
+    console.log(loginuser.isLoggedIn)
+
+    const authentication = {
+        isLoggedIn: loginuser.isLoggedIn,
+
+        onAuthentication() {
+            this.isLoggedIn = loginuser.isLoggedIn
+        },
+        getLoggedInStatus() {
+            return this.isLoggedIn
+        }
+    }
+    function SecuredRoute(props) {
+        return (
+            <Route path={props.path} render={data => authentication.getLoggedInStatus() ?
+                <props.component {...data}></props.component> :
+                <Redirect to={{ pathname: '/login' }}></Redirect>}>
+            </Route>
+        )
+    }
     $(function () {
         $("li").click(function () {
             // remove classes from all
@@ -29,6 +61,7 @@ function Sidebar() {
     });
     return (
         <div className="container-fluid">
+            { props.children }
             <Router>
                 <div className="row sidebar">
                     <ul class="col-md-3">
@@ -37,22 +70,24 @@ function Sidebar() {
                         <Link to='/balance'><li>Check Balance</li></Link>
                         <Link to='/addfunds'><li>Add to Wallet</li></Link>
                         <Link to='/spend_funds'><li>Send Amount</li></Link>
-                        {/* <Link to='/alltranscations'><li>All Transactions</li></Link> */}
                     </ul>
-                    <Switch>
-                        <Route exact path='/addfunds' component={Add_Funds}></Route>
-                        <Route exact path='/alltranscations' component={All_Transactions}></Route>
-                        <Route exact path="/allwallets" component={All_Wallets}></Route>
-                        <Route exact path='/balance' component={Check_Balance}></Route>
-                        <Route exact path='/newwallet' component={New_Wallets}></Route>
-                        <Route exact path='/spend_funds' component={Spend_Funds}></Route>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Switch>
+                            <Route exact path='/addfunds' component={Add_Funds}></Route>
+                            <Route exact path='/alltranscations' component={All_Transactions}></Route>
+                            <Route exact path="/allwallets" component={All_Wallets}></Route>
+                            <Route exact path='/balance' component={Check_Balance}></Route>
+                            <Route exact path='/newwallet' component={New_Wallets}></Route>
+                            <Route exact path='/spend_funds' component={Spend_Funds}></Route>
+                        </Switch>
+                    </Suspense>
 
-                    </Switch>
                 </div>
             </Router>
 
         </div>
     )
 }
+
 
 export default Sidebar

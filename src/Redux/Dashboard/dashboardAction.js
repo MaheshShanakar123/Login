@@ -1,4 +1,5 @@
 import { Fetch_Users, Fetch_Users_Success } from "./dasboardType";
+import {myConfig} from '../../config.js';
 
 export const fetchusersrequest = () => {
     return {
@@ -39,7 +40,7 @@ const getAlltheDataFromUser = () => {
 }
 
 function fetchPosts() {
-    const URL = "http://localhost:3000/login";
+    const URL = `${myConfig.apiUrl}/login`;
     return fetch(URL, { method: 'GET'})
        .then( response => Promise.all([response, response.json()]));
   }

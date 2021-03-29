@@ -85,7 +85,8 @@ function Spend_Funds() {
 
                 <div className="row form-group">
                     <label htmlFor="users" className="col-md-4">To:</label>
-                    <select className="col-md-6 form-control" id="users" name="userList" onChange={(e) => settransferamount({ ...transferamount, to: e.target.value, id: 3 })}>
+                    <select className="col-md-6 form-control" id="users" name="userList" onChange={(e) => settransferamount({ ...transferamount, to: e.target.value, id: 3 })} placeholder="Select Name">
+                        <option class="dropdown-item" disabled selected value="undefined">-- Select a Name --</option>
                         {toDropdown.map(user => (
                             <option value={user.id}>{user.name}</option>
                         ))}

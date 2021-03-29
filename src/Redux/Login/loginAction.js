@@ -1,4 +1,5 @@
 import { LOGIN_FAILURE, LOGIN_USER, FETCH_USER } from "./loginType";
+import {myConfig} from '../../config.js';
 
 export const fetchuserrequest = () => {
     return {
@@ -22,13 +23,16 @@ export const loginfailure = (error) => {
 }
 
 const loginAutheticatedPerson = (data) => {
+    console.log("cdw",`${myConfig.apiUrl}/login`);
+    const baseUrl = process.env.REACT_APP_URL
+    console.log("baseurl", baseUrl)
     return (dispatch) => {
         dispatch(fetchuserrequest());
         const requestOptions = {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
         };
-        fetch('http://localhost:3000/login', requestOptions)
+        fetch(`${myConfig.apiUrl}/login`, requestOptions)
             .then(response => response.json())
             .then(json => {
                 var obj;

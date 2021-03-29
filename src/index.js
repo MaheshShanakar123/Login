@@ -3,10 +3,31 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import Login from './Components/Login';
+import { Provider } from 'react-redux';
+import store from './Redux/store';
+import Dashboard from './Components/Dashboard';
+import NotFound from './Components/NotFound';
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <App />
+    <Router>
+            <Switch>
+              <Route exact path='/' component={Login}></Route>
+              <Route exact path='/login' component={Login}></Route>
+              {/* <Route component={NotFound}></Route> */}
+              {/* <Route exact path ='/dashboard' component={Dashboard}></Route> */}
+            </Switch>
+          </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

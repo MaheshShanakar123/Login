@@ -90,6 +90,7 @@ function New_Wallets() {
                 <div className="row form-group">
                     <label htmlFor="gender" className="col-md-4">Gender</label>
                     <select className="col-md-6 form-control" id="gender" name="gender" onChange={(e) => setformdata({ ...formdata, Gender: e.target.value })}>
+                    <option class="dropdown-item" disabled selected value="undefined">-- Select a Gender --</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>

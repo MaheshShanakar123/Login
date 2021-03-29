@@ -13,7 +13,7 @@ function All_Wallets() {
                     <tr>
                         <th>Sl.No</th>
                         <th>Name</th>
-                        <th>email</th>
+                        <th>Email</th>
                         <th>Phone</th>
                         <th>Gender</th>
                         <th>Amount</th>

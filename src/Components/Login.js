@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import './css/Login.css';
 import { Alert } from 'bootstrap-4-react';
+import Sidebar from './Sidebar';
 
 function Login() {
     var history = useHistory();

@@ -17,8 +17,7 @@
       "name": "Hruday",
       "Phone": "8678424901",
       "Gender": "Male",
-      "role": "user",
-      "Balance": 150000
+      "Balance": 150600
     },
     {
       "id": 3,
@@ -37,7 +36,7 @@
       "name": "xyz",
       "Phone": "8678424901",
       "Gender": "Female",
-      "Balance": 27500
+      "Balance": 28000
     },
     {
       "id": 5,

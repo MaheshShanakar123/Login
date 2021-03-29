@@ -1,6 +1,7 @@
 import { LOGIN_FAILURE, LOGIN_USER, FETCH_USER } from "./loginType";
 
 const initialState = {
+    isLoggedIn : false,
     loading: false,
     user: {},
     error: ''
@@ -11,6 +12,7 @@ const loginReducer = (state = initialState, action) => {
         case FETCH_USER:
             return {
                 ...state,
+                isLoggedIn : false,
                 loading: true,
                 error: null
             };
@@ -18,6 +20,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                isLoggedIn : true,
                 user: action.payload,
                 error: ''
             }
@@ -25,6 +28,7 @@ const loginReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                isLoggedIn : false,
                 user: '',
                 error: action.payload
             }
